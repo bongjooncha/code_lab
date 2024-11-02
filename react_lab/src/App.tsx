@@ -1,14 +1,16 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Count from "pages/Count";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        Learn React
-      </header>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Count />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
