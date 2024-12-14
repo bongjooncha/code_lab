@@ -1,10 +1,10 @@
-import { useRef } from "react";
+import { memo, useRef } from "react";
 
 interface ButtonProps {
   count: number;
   addCount: () => void;
 }
-const CountButton = ({ count, addCount }: ButtonProps) => {
+const CountButtonMemo = memo(({ count, addCount }: ButtonProps) => {
   const countRef = useRef(0);
   countRef.current++;
   return (
@@ -18,6 +18,6 @@ const CountButton = ({ count, addCount }: ButtonProps) => {
       </div>
     </div>
   );
-};
+});
 
-export default CountButton;
+export default CountButtonMemo;
