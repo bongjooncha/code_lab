@@ -1,20 +1,22 @@
 import NavBar from "components/navBar";
 import ApiWithUseEffect from "components/getAPI/apiWithUseEffect";
 import ApiWithQuery from "components/getAPI/apiWithQuery";
+import { fetchData } from "api/upbitapi";
+import { useQuery } from "react-query";
 
 const GetAPI = () => {
   return (
     <div>
       <NavBar />
-      {/* <div className="mainContainer">// */}
       <div style={{ backgroundColor: "white" }}>
         <div className="mid_continer">
           <ApiWithUseEffect />
         </div>
       </div>
-
       <div style={{ backgroundColor: "white" }}>
-        <div className="mid_continer">{/* <ApiWithQuery /> */}</div>
+        <div className="mid_continer">
+          <ApiWithQuery />
+        </div>
       </div>
     </div>
   );
