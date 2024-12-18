@@ -1,8 +1,6 @@
 import NavBar from "components/navBar";
 import ApiWithUseEffect from "components/getAPI/apiWithUseEffect";
 import ApiWithQuery from "components/getAPI/apiWithQuery";
-import { fetchData } from "api/upbitapi";
-import { useQuery } from "react-query";
 
 const GetAPI = () => {
   return (

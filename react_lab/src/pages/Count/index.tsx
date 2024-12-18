@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import NavBar from "components/navBar";
-import "../style/index.css";
+import styles from "./style/index.module.css";
 
 import CountButton from "components/button/countButton";
 import { useStateCountButton } from "hooks/countButtonHook";
@@ -16,10 +16,10 @@ export default function Count() {
   return (
     <div>
       <NavBar />
-      <div className="mainContainer">
+      <div className={styles.mainContainer}>
         <h1>memo 사용</h1>
-        <div className="mid_container">
-          <div className="container">
+        <div className={styles.midContainer}>
+          <div className={styles.container}>
             <h2>부모 컴퍼넌트에 작성된 useState button</h2>
             <CountButton {...useStateCountButton()} />
           </div>
@@ -29,7 +29,7 @@ export default function Count() {
         <UseStateLet />
 
         <h1>zustand 사용</h1>
-        <div className="mid_container">
+        <div className={styles.midContainer}>
           <EmptyZustand />
           <ZustandButton />
         </div>
