@@ -1,4 +1,4 @@
-import CountButton from "components/button/countButton";
+import CountButton from "components/countButton";
 import { useStateCountButton, useLetCountButton } from "hooks/countButtonHook";
 import styles from "./style/index.module.css";
 const UseStateLet = () => {

@@ -1,5 +1,5 @@
 import { memo, useRef } from "react";
-import CountButton from "components/button/countButton";
+import CountButton from "components/countButton";
 import { useStateCountButton } from "hooks/countButtonHook";
 import styles from "./style/index.module.css";
 

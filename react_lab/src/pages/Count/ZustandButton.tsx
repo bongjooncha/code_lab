@@ -1,4 +1,4 @@
-import CountButton from "components/button/countButton";
+import CountButton from "components/countButton";
 import useStore from "store/zustandButton";
 import styles from "./style/index.module.css";
 

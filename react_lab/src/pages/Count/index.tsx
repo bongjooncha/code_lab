@@ -2,7 +2,7 @@ import { useRef } from "react";
 import NavBar from "components/navBar";
 import styles from "./style/index.module.css";
 
-import CountButton from "components/button/countButton";
+import CountButton from "components/countButton";
 import { useStateCountButton } from "hooks/countButtonHook";
 
 import MemoButton from "./memoButton";

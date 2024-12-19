@@ -1,12 +1,13 @@
-.nav_bar {
+.NavBar {
   display: flex;
   justify-content: space-around;
   align-items: center;
   background-color: #253b6d;
   padding: 40px;
   font-size: 30px;
+  height: 35px;
 }
 
-.nav_bar a {
+.NavBar a {
   color: white;
 }

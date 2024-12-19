@@ -1,0 +1,16 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(129, 111, 246);
+  width: 95%;
+  margin: 50px 2.5%;
+  padding: 10px;
+  gap: 20px;
+}
+.midContainer {
+  background-color: white;
+  padding: 10px;
+  width: 90%;
+  margin: 10px 5%;
+  margin-bottom: 40px;
+}

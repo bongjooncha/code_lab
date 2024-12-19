@@ -4,13 +4,16 @@ import { MarketData } from "types/coinAPI";
 
 const ApiWithUseEffect = () => {
   const [data, setData] = useState<MarketData[]>([]);
+  const [countUseEffect, setCountUseEffect] = useState(0);
   const countRef = useRef(0);
+
   const fetchDataHandler = () => {
     fetchData("KRW-BTC").then((data) => setData(data));
   };
 
   useEffect(() => {
     fetchDataHandler();
+    setCountUseEffect(countUseEffect + 1);
   }, []);
 
   countRef.current++;
@@ -20,6 +23,7 @@ const ApiWithUseEffect = () => {
       <div>
         <h2>upbit bitcoin price(useEffect)</h2>
         <div>랜더링 된 횟수(0 시작) : {countRef.current}</div>
+        <div>useEffect 실행 횟수 : {countUseEffect}</div>
         <button onClick={fetchDataHandler}>다시 요청</button>
         <div>
           {data.length > 0 ? (

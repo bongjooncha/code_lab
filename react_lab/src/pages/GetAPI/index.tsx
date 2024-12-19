@@ -1,21 +1,12 @@
 import NavBar from "components/navBar";
-import ApiWithUseEffect from "components/getAPI/apiWithUseEffect";
-import ApiWithQuery from "components/getAPI/apiWithQuery";
+import styles from "./style/index.module.css";
+import QueryTest from "./Query/index";
 
 const GetAPI = () => {
   return (
     <div>
       <NavBar />
-      <div style={{ backgroundColor: "white" }}>
-        <div className="mid_continer">
-          <ApiWithUseEffect />
-        </div>
-      </div>
-      <div style={{ backgroundColor: "white" }}>
-        <div className="mid_continer">
-          <ApiWithQuery />
-        </div>
-      </div>
+      <QueryTest />
     </div>
   );
 };
