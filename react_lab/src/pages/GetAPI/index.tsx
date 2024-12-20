@@ -1,11 +1,14 @@
 import NavBar from "components/navBar";
-import styles from "./style/index.module.css";
-import QueryTest from "./Query/index";
+import QueryEffect from "./QueryEffect";
+import QueryTest from "./Query";
+import Effect from "./Effect";
 
 const GetAPI = () => {
   return (
     <div>
       <NavBar />
+      <QueryEffect />
+      <Effect />
       <QueryTest />
     </div>
   );

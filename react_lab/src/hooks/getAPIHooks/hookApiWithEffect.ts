@@ -2,7 +2,7 @@ import { fetchData } from "api/upbitapi";
 import { useState, useEffect } from "react";
 import { MarketData } from "types/coinAPI";
 
-export const apiWithEffect = (array: string[] | null) => {
+export const useApiWithEffect = (array: string[] | null) => {
   const [data, setData] = useState<MarketData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [countUseEffect, setCountUseEffect] = useState(0);

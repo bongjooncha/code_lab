@@ -34,7 +34,7 @@ const GetAPI = ({
         ) : (
           data?.map((item) => (
             <div key={item.market}>
-              <div>시간 :{item.trade_time}</div>
+              <div>마지막 거래 시간 : {item.trade_time}</div>
               {item.market}:{" "}
               {new Intl.NumberFormat("ko-KR").format(item.trade_price)} 원
             </div>
