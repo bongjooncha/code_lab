@@ -6,7 +6,7 @@ export const connectWebSocket = (
   url: string,
   queryKey: string,
   queryClient: QueryClient
-) => {
+): WebSocket | null => {
   if (ws) {
     ws.close();
   }
@@ -26,6 +26,8 @@ export const connectWebSocket = (
     ws = null;
     console.log("WebSocket connection closed");
   };
+
+  return ws;
 };
 
 export const disconnectWebSocket = () => {

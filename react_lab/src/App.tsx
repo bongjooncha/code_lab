@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import Count from "pages/Count";
 import GetAPI from "pages/GetAPI";
+import WebPrice from "pages/WebPrice";
 
 const queryClient = new QueryClient();
 
@@ -14,9 +15,10 @@ const App: React.FC = () => {
       <QueryClientProvider client={queryClient}>
         <Router>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Count />} />
             <Route path="/count" element={<Count />} />
             <Route path="/getAPI" element={<GetAPI />} />
+            <Route path="/webSocketPrice" element={<WebPrice />} />
           </Routes>
         </Router>
       </QueryClientProvider>
