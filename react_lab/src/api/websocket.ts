@@ -13,6 +13,11 @@ export const connectWebSocket = (
 
   ws = new WebSocket(url);
 
+  ws.onopen = () => {
+    console.log("WebSocket connected");
+    ws!.send(JSON.stringify({ type: "init", payload: {} }));
+  };
+
   ws.onmessage = (event) => {
     const parsedData = JSON.parse(event.data);
     queryClient.setQueryData(queryKey, parsedData);

@@ -35,9 +35,8 @@ const QueryTest = () => {
           </li>
           <br />
           <li>
-            refetchInterval 를 사용하면 2초마다 자동으로 데이터가 업데이트
-            된다.페이지가 focus 되지 않을때는 <br /> 데이터가 업데이트 되지
-            않는다.
+            refetchInterval 를 사용하면 2초마다 자동으로 데이터가 업데이트 된다.
+            페이지가 focus 되지 않을때는 데이터가 업데이트 되지 않는다.
           </li>
         </div>
       </div>
