@@ -1,5 +1,5 @@
 import NavBar from "components/navBar";
-import WebSocketPrice from "components/WebSocketPrice/a";
+import WebSocketPrice from "components/WebSocketPrice/b";
 const WebPrice = () => {
   return (
     <div>

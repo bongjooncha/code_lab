@@ -10,7 +10,7 @@ const ApiQuery2sec = () => {
       data={data}
       isLoading={isLoading}
       refetch={refetch}
-      countQuery={countQuery}
+      count={countQuery}
     />
   );
 };

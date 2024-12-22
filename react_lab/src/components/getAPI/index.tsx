@@ -7,7 +7,7 @@ interface APIprops {
   data: MarketData[] | undefined;
   isLoading: boolean;
   refetch: () => void;
-  countQuery: number;
+  count: number;
 }
 
 const GetAPI = ({
@@ -16,7 +16,7 @@ const GetAPI = ({
   data,
   refetch,
   isLoading,
-  countQuery,
+  count,
 }: APIprops) => {
   const countRef = useRef(0);
   countRef.current++;
@@ -25,12 +25,15 @@ const GetAPI = ({
       <h2>upbit bit coin price({using1})</h2>
       <div>랜더링 된 횟수(0 시작) : {countRef.current}</div>
       <div>
-        {using2} 실행된 횟수 : {countQuery}
+        {using2} 실행된 횟수 : {count}
       </div>
       <button onClick={refetch}>다시 요청</button>
       <div>
         {isLoading ? (
-          <div>데이터를 불러오는 중...</div>
+          <>
+            <div>데이터를 불러오는 중...</div>
+            <div>데이터를 불러오는 중...</div>
+          </>
         ) : (
           data?.map((item) => (
             <div key={item.market}>

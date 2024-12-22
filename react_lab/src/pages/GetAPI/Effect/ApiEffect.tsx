@@ -2,7 +2,7 @@ import GetAPI from "components/getAPI";
 import { useApiWithEffect } from "hooks/getAPIHooks/hookApiWithEffect";
 
 interface ApiEffectProps {
-  array: string[] | null;
+  array: any[] | null;
 }
 
 const ApiEffect = ({ array }: ApiEffectProps) => {
@@ -14,7 +14,7 @@ const ApiEffect = ({ array }: ApiEffectProps) => {
       data={data}
       isLoading={isLoading}
       refetch={refetch}
-      countQuery={countUseEffect}
+      count={countUseEffect}
     />
   );
 };

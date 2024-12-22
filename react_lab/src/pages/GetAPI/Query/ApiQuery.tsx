@@ -15,7 +15,7 @@ const ApiQuery = ({
       data={data}
       isLoading={isLoading}
       refetch={refetch}
-      countQuery={countQuery}
+      count={countQuery}
     />
   );
 };
