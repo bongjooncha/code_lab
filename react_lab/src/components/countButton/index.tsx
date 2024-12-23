@@ -4,7 +4,7 @@ interface ButtonProps {
   count: number;
   addCount: () => void;
 }
-const CountButton = ({ count, addCount }: ButtonProps) => {
+const CountButton: React.FC<ButtonProps> = ({ count, addCount }) => {
   const countRef = useRef(0);
   countRef.current++;
   return (

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { ButtonProps } from "types/button";
+import { ButtonProps } from "types/Button";
 
 type State = ButtonProps;
 
@@ -10,7 +10,7 @@ const useStore = create<State>()(
       count: 0,
       addCount: () => set((state) => ({ count: state.count + 1 })),
     }),
-    { name: "CounterStore" } // Redux DevTools에서 표시될 이름
+    { name: "CounterStore" }
   )
 );
 

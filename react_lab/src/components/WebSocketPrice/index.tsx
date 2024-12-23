@@ -1,5 +1,8 @@
 import { useRef } from "react";
 import { TickerData } from "types/ticker";
+
+const TICKER_CODES = ["BTC", "ETH", "SOL", "XRP", "USDT", "USDC"];
+
 const WebSocketPrice = (data: TickerData) => {
   const countRef = useRef(0);
   countRef.current++;

@@ -10,14 +10,14 @@ interface APIprops {
   count: number;
 }
 
-const GetAPI = ({
+const GetAPI: React.FC<APIprops> = ({
   using1,
   using2,
   data,
   refetch,
   isLoading,
   count,
-}: APIprops) => {
+}) => {
   const countRef = useRef(0);
   countRef.current++;
   return (

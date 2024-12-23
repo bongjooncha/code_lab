@@ -2,7 +2,6 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Home from "pages/Home";
 import Count from "pages/Count";
 import GetAPI from "pages/GetAPI";
 import WebPrice from "pages/WebPrice";
