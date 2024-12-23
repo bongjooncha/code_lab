@@ -1,6 +1,6 @@
-import CountButton from "components/countButton";
+import CountButton from "components/CountButton";
 import { useStateCountButton } from "hooks/countButtonHook";
-import GetAPI from "components/getAPI";
+import GetAPI from "components/GetAPI";
 import { useApiWithEffect } from "hooks/getAPIHooks/hookApiWithEffect";
 import { useMemo } from "react";
 

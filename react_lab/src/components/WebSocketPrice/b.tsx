@@ -1,13 +1,16 @@
 import { connectWebSocket, disconnectWebSocket } from "api/websocket";
 import { QueryClient } from "react-query";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { TickerData } from "types/ticker";
 
 const queryClient = new QueryClient();
+const TICKER_CODES = ["BTC", "ETH", "SOL", "XRP", "USDT", "USDC"];
 
 const WebSocketPrice = () => {
   const [data, setData] = useState<{ [key: string]: TickerData }>({}); // 상태를 객체로 변경
-
+  const [selectedCode, setSelectedCode] = useState<string[]>(["USDT"]);
+  const countRef = useRef(0);
+  countRef.current++;
   useEffect(() => {
     const ws = connectWebSocket(
       "wss://api.upbit.com/websocket/v1",
@@ -19,9 +22,10 @@ const WebSocketPrice = () => {
       ws.onopen = () => {
         const message = JSON.stringify([
           { ticket: "test example" },
-          { type: "ticker", codes: ["KRW-BTC", "KRW-ETH"] },
+          { type: "ticker", codes: selectedCode.map((code) => `KRW-${code}`) },
           { format: "DEFAULT" },
         ]);
+        console.log("message", message);
         ws.send(message);
       };
 
@@ -34,6 +38,7 @@ const WebSocketPrice = () => {
             ...prevData,
             [parsedData.code]: parsedData, // 각 코드별로 최신 데이터 업데이트
           }));
+          console.log("parsedData", parsedData);
         } catch (error) {
           console.error("데이터 파싱 오류:", error);
         }
@@ -43,11 +48,36 @@ const WebSocketPrice = () => {
     return () => {
       disconnectWebSocket();
     };
-  }, []);
+  }, [selectedCode]);
+
+  const handleCodeChange = (code: string) => {
+    setSelectedCode((prevSelectedCodes) => {
+      if (prevSelectedCodes.includes(code)) {
+        return prevSelectedCodes.filter((c) => c !== code);
+      }
+      return [...prevSelectedCodes, code];
+    });
+  };
 
   return (
     <div style={{ backgroundColor: "white", padding: "20px" }}>
       <h1>WebSocketPrice</h1>
+      <div>
+        <strong>랜더링 된 횟수(0 시작) : {countRef.current}</strong>
+      </div>
+      <div>
+        {TICKER_CODES.map((code) => (
+          <label key={code}>
+            <input
+              type="checkbox"
+              checked={selectedCode.includes(code)}
+              onChange={() => handleCodeChange(code)}
+            />
+            {code}
+          </label>
+        ))}
+      </div>
+      <div>{selectedCode.join(", ")}의 정보 받아오는 중</div>
       {Object.keys(data).length > 0 ? (
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
@@ -55,13 +85,11 @@ const WebSocketPrice = () => {
               <th style={tableHeaderStyle}>타임스탬프</th>
               <th style={tableHeaderStyle}>코드</th>
               <th style={tableHeaderStyle}>현재가</th>
-              <th style={tableHeaderStyle}>변동</th>
               <th style={tableHeaderStyle}>변동율</th>
-              <th style={tableHeaderStyle}>거래량</th>
             </tr>
           </thead>
           <tbody>
-            {["KRW-BTC", "KRW-ETH"].map((code) => {
+            {TICKER_CODES.map((code) => `KRW-${code}`).map((code) => {
               const item = data[code];
               if (!item) return null;
               return (
@@ -69,15 +97,13 @@ const WebSocketPrice = () => {
                   <td style={tableCellStyle}>
                     {new Date(item.timestamp).toLocaleString()}
                   </td>
-                  <td style={tableCellStyle}>{item.code}</td>
+                  <td style={tableCellStyle}>{code.replace("KRW-", "")}</td>
                   <td style={tableCellStyle}>
-                    {item.trade_price.toLocaleString()}
+                    {item.trade_price.toLocaleString()} 원
                   </td>
-                  <td style={tableCellStyle}>{item.change}</td>
                   <td style={tableCellStyle}>
                     {(item.change_rate * 100).toFixed(2)}%
                   </td>
-                  <td style={tableCellStyle}>{item.trade_volume}</td>
                 </tr>
               );
             })}

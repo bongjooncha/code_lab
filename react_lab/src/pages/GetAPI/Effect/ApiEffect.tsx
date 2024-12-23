@@ -1,4 +1,4 @@
-import GetAPI from "components/getAPI";
+import GetAPI from "components/GetAPI";
 import { useApiWithEffect } from "hooks/getAPIHooks/hookApiWithEffect";
 
 interface ApiEffectProps {

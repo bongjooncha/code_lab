@@ -1,4 +1,4 @@
-import NavBar from "components/navBar";
+import NavBar from "components/NavBar";
 import QueryEffect from "./QueryEffect";
 import QueryTest from "./Query";
 import Effect from "./Effect";

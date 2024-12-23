@@ -1,44 +1,9 @@
 import { connectWebSocket, disconnectWebSocket } from "api/websocket";
 import { QueryClient } from "react-query";
 import { useEffect, useState, useRef } from "react";
+import { TickerData } from "types/ticker";
 
 const queryClient = new QueryClient();
-
-interface TickerData {
-  type: string;
-  code: string;
-  opening_price: number;
-  high_price: number;
-  low_price: number;
-  acc_ask_volume: number;
-  acc_bid_volume: number;
-  acc_trade_price: number;
-  acc_trade_price_24h: number;
-  acc_trade_volume: number;
-  acc_trade_volume_24h: number;
-  ask_bid: string;
-  change: string;
-  change_price: number;
-  change_rate: number;
-  delisting_date: string | null;
-  highest_52_week_date: string;
-  highest_52_week_price: number;
-  is_trading_suspended: boolean;
-  lowest_52_week_date: string;
-  lowest_52_week_price: number;
-  market_state: string;
-  market_warning: string;
-  prev_closing_price: number;
-  signed_change_price: number;
-  signed_change_rate: number;
-  stream_type: string;
-  timestamp: number;
-  trade_date: string;
-  trade_price: number;
-  trade_time: string;
-  trade_timestamp: number;
-  trade_volume: number;
-}
 
 const WebSocketPrice = () => {
   const [data, setData] = useState<TickerData[]>([]); // 상태 타입 지정

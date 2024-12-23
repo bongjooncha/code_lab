@@ -1,4 +1,4 @@
-import GetAPI from "components/getAPI";
+import GetAPI from "components/GetAPI";
 import { useApiWithEffect2sec } from "hooks/getAPIHooks/hookApiWithEffect";
 
 const ApiEffect2sec = () => {

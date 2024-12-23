@@ -1,9 +1,10 @@
+import { useEffect, useState } from "react";
 import { connectWebSocket, disconnectWebSocket } from "api/websocket";
 import { QueryClient, useQueryClient } from "react-query";
-import { useEffect, useState } from "react";
 import { TickerData } from "types/ticker";
 
 const queryClient = new QueryClient();
+const TICKER_CODES = ["BTC", "ETH", "SOL", "XRP", "BNB", "USDT"];
 
 const WebSocketPrice = () => {
   const [data, setData] = useState<{ [key: string]: TickerData }>({}); // 상태를 객체로 변경
@@ -19,7 +20,7 @@ const WebSocketPrice = () => {
       ws.onopen = () => {
         const message = JSON.stringify([
           { ticket: "test example" },
-          { type: "ticker", codes: ["KRW-BTC", "KRW-ETH"] },
+          { type: "ticker", codes: TICKER_CODES.map((code) => `KRW-${code}`) },
           { format: "DEFAULT" },
         ]);
         ws.send(message);
@@ -55,13 +56,12 @@ const WebSocketPrice = () => {
               <th style={tableHeaderStyle}>타임스탬프</th>
               <th style={tableHeaderStyle}>코드</th>
               <th style={tableHeaderStyle}>현재가</th>
-              <th style={tableHeaderStyle}>변동</th>
               <th style={tableHeaderStyle}>변동율</th>
               <th style={tableHeaderStyle}>거래량</th>
             </tr>
           </thead>
           <tbody>
-            {["KRW-BTC", "KRW-ETH"].map((code) => {
+            {TICKER_CODES.map((code) => {
               const item = data[code];
               if (!item) return null;
               return (

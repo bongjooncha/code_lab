@@ -1,5 +1,5 @@
 import { useApiWithQueryUpdate2sec } from "hooks/getAPIHooks/hookApiWithQuerys";
-import GetAPI from "components/getAPI";
+import GetAPI from "components/GetAPI";
 
 const ApiQuery2sec = () => {
   const { data, isLoading, refetch, countQuery } = useApiWithQueryUpdate2sec();

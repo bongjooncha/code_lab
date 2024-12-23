@@ -1,8 +1,8 @@
 import { useRef } from "react";
-import NavBar from "components/navBar";
+import NavBar from "components/NavBar";
 import styles from "./style/index.module.css";
 
-import CountButton from "components/countButton";
+import CountButton from "components/CountButton";
 import { useStateCountButton } from "hooks/countButtonHook";
 
 import MemoButton from "./memoButton";

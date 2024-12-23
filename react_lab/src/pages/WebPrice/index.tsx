@@ -1,4 +1,4 @@
-import NavBar from "components/navBar";
+import NavBar from "components/NavBar";
 import WebSocketPrice from "components/WebSocketPrice/b";
 const WebPrice = () => {
   return (
