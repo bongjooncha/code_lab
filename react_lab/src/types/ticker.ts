@@ -1,4 +1,4 @@
-export interface TickerData {
+export interface UpTickerData {
   type: string;
   code: string;
   opening_price: number;

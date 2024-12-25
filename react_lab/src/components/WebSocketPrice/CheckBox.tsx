@@ -24,3 +24,5 @@ const CheckBox: React.FC<CheckBoxProps> = ({
     </div>
   );
 };
+
+export default CheckBox;

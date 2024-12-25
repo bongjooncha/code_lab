@@ -1,10 +1,12 @@
 import NavBar from "components/NavBar";
-import WebSocketPrice from "components/WebSocketPrice/b";
+import UpWebSocketPrice from "./index.upbit";
+import BiWebSocketPrice from "./index.binance";
 const WebPrice = () => {
   return (
     <div>
       <NavBar />
-      <WebSocketPrice />
+      {/* <UpWebSocketPrice /> */}
+      <BiWebSocketPrice />
     </div>
   );
 };

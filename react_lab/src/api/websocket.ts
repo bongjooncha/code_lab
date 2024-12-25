@@ -28,16 +28,18 @@ export const connectWebSocket = (
   };
 
   ws.onclose = () => {
+    console.log("소켓 연결 종료 : ", ws?.readyState);
     ws = null;
-    console.log("WebSocket connection closed");
   };
 
   return ws;
 };
 
 export const disconnectWebSocket = () => {
-  if (ws) {
-    ws.close();
+  if (ws?.readyState === WebSocket.OPEN) {
+    ws.onclose = () => {
+      console.log("소켓 연결 종료 : ", ws?.readyState);
+    };
     ws = null;
   }
 };

@@ -1,16 +1,15 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { connectWebSocket, disconnectWebSocket } from "api/websocket";
 import { QueryClient } from "react-query";
-import { TickerData } from "types/ticker";
+import { UpTickerData } from "types/ticker";
 
 const queryClient = new QueryClient();
 const TICKER_CODES = ["BTC", "ETH", "SOL", "XRP", "USDT", "USDC"];
 
-export const useWebSocketPrice = () => {
-  const [data, setData] = useState<{ [key: string]: TickerData }>({});
+export const useUpWebSocketPrice = () => {
+  const [data, setData] = useState<{ [key: string]: UpTickerData }>({});
   const [selectedCode, setSelectedCode] = useState<string[]>(["USDT"]);
-  const countRef = useRef(0);
-  countRef.current++;
+  const [countEffect, setCountEffect] = useState(0);
 
   useEffect(() => {
     const ws = connectWebSocket(
@@ -18,6 +17,7 @@ export const useWebSocketPrice = () => {
       "upbitwebsocket",
       queryClient
     );
+    setCountEffect((current) => current + 1);
 
     if (ws) {
       ws.onopen = () => {
@@ -27,6 +27,7 @@ export const useWebSocketPrice = () => {
           { format: "DEFAULT" },
         ]);
         ws.send(message);
+        console.log("소켓 연결: ", ws.readyState);
       };
 
       ws.onmessage = async (event) => {
@@ -37,7 +38,6 @@ export const useWebSocketPrice = () => {
             ...prevData,
             [parsedData.code]: parsedData,
           }));
-          console.log("parsedData", parsedData);
         } catch (error) {
           console.error("데이터 파싱 오류:", error);
         }
@@ -62,7 +62,7 @@ export const useWebSocketPrice = () => {
     data,
     selectedCode,
     handleCodeChange,
-    count: countRef.current,
     TICKER_CODES,
+    countEffect,
   };
 };
