@@ -5,7 +5,7 @@ const WebPrice = () => {
   return (
     <div>
       <NavBar />
-      {/* <UpWebSocketPrice /> */}
+      <UpWebSocketPrice />
       <BiWebSocketPrice />
     </div>
   );

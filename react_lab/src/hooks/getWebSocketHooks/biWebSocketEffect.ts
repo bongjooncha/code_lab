@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import { connectWebSocket, disconnectWebSocket } from "api/websocket";
 import { QueryClient } from "react-query";
-import { BiTickerData } from "types/ticker";
+import { TickerData, BiTickerData } from "types/ticker";
 
 const queryClient = new QueryClient();
-const TICKER_CODES = ["BTC", "ETH", "SOL", "XRP", "USDT", "USDC"];
+const TICKER_CODES = ["btc", "eth", "sol", "xrp", "usdc"];
+const transFormBinanceData = (data: BiTickerData): TickerData => {
+  return {
+    code: data.s,
+    price: parseFloat(data.p),
+    timestamp: data.E,
+  };
+};
 
 export const useBiWebSocketPrice = () => {
-  const [data, setData] = useState<{ [key: string]: BiTickerData }>({});
-  const [selectedCode, setSelectedCode] = useState<string[]>(["USDT"]);
+  const [data, setData] = useState<{ [key: string]: TickerData }>({});
+  const [selectedCode, setSelectedCode] = useState<string[]>(["usdc"]);
   const [countEffect, setCountEffect] = useState(0);
 
   useEffect(() => {
@@ -23,21 +30,21 @@ export const useBiWebSocketPrice = () => {
       ws.onopen = () => {
         const message = JSON.stringify({
           method: "SUBSCRIBE",
-          params: ["btcusdt@markPrice"],
+          params: ["btc@markPrice@1s"],
           id: "adf",
         });
         ws.send(message);
+        console.log("binance 소켓 연결: ", ws.readyState);
       };
 
       ws.onmessage = async (event) => {
         try {
           const dataText = await event.data;
-          const parsedData: TickerData = JSON.parse(dataText);
+          const parsedData: BiTickerData = JSON.parse(dataText);
           setData((prevData) => ({
             ...prevData,
-            [parsedData.code]: parsedData,
+            [parsedData.s]: transFormBinanceData(parsedData),
           }));
-          console.log("parsedData", parsedData);
         } catch (error) {
           console.error("데이터 파싱 오류:", error);
         }

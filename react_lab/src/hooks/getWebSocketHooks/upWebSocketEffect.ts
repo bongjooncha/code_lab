@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import { connectWebSocket, disconnectWebSocket } from "api/websocket";
 import { QueryClient } from "react-query";
-import { UpTickerData } from "types/ticker";
+import { TickerData, UpTickerData } from "types/ticker";
 
 const queryClient = new QueryClient();
 const TICKER_CODES = ["BTC", "ETH", "SOL", "XRP", "USDT", "USDC"];
+const transFormUpbitData = (data: UpTickerData): TickerData => {
+  return {
+    code: data.code,
+    price: data.trade_price,
+    timestamp: data.timestamp,
+  };
+};
 
 export const useUpWebSocketPrice = () => {
-  const [data, setData] = useState<{ [key: string]: UpTickerData }>({});
+  const [data, setData] = useState<{ [key: string]: TickerData }>({});
   const [selectedCode, setSelectedCode] = useState<string[]>(["USDT"]);
   const [countEffect, setCountEffect] = useState(0);
 
@@ -27,16 +34,16 @@ export const useUpWebSocketPrice = () => {
           { format: "DEFAULT" },
         ]);
         ws.send(message);
-        console.log("소켓 연결: ", ws.readyState);
+        console.log("upbit 소켓 연결: ", ws.readyState);
       };
 
       ws.onmessage = async (event) => {
         try {
           const dataText = await event.data.text();
-          const parsedData: TickerData = JSON.parse(dataText);
+          const parsedData: UpTickerData = JSON.parse(dataText);
           setData((prevData) => ({
             ...prevData,
-            [parsedData.code]: parsedData,
+            [parsedData.code]: transFormUpbitData(parsedData),
           }));
         } catch (error) {
           console.error("데이터 파싱 오류:", error);

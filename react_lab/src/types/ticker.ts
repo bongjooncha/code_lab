@@ -1,3 +1,9 @@
+export interface TickerData {
+  code: string;
+  price: number;
+  timestamp: number;
+}
+
 export interface UpTickerData {
   type: string;
   code: string;
@@ -32,4 +38,15 @@ export interface UpTickerData {
   trade_time: string;
   trade_timestamp: number;
   trade_volume: number;
+}
+
+export interface BiTickerData {
+  e: string; // Event type
+  E: number; // Event time
+  s: string; // Symbol
+  p: string; // Mark price
+  i: string; // Index price
+  P: string; // Estimated Settle Price
+  r: string; // Funding rate
+  T: number; // Next funding time
 }

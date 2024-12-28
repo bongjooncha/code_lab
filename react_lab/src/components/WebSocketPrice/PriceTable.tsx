@@ -6,6 +6,7 @@ interface PriceTableProps {
 }
 
 const PriceTable: React.FC<PriceTableProps> = ({ data, TICKER_CODES }) => {
+  console.log(data);
   return (
     <table>
       <thead>
@@ -13,11 +14,10 @@ const PriceTable: React.FC<PriceTableProps> = ({ data, TICKER_CODES }) => {
           <th style={tableHeaderStyle}>타임스탬프</th>
           <th style={tableHeaderStyle}>코드</th>
           <th style={tableHeaderStyle}>현재가</th>
-          <th style={tableHeaderStyle}>변동율</th>
         </tr>
       </thead>
       <tbody>
-        {TICKER_CODES.map((code) => `KRW-${code}`).map((code) => {
+        {Object.keys(data).map((code) => {
           const item = data[code];
           if (!item) return null;
           return (
@@ -25,13 +25,8 @@ const PriceTable: React.FC<PriceTableProps> = ({ data, TICKER_CODES }) => {
               <td style={tableCellStyle}>
                 {new Date(item.timestamp).toLocaleString()}
               </td>
-              <td style={tableCellStyle}>{code.replace("KRW-", "")}</td>
-              <td style={tableCellStyle}>
-                {item.trade_price.toLocaleString()} 원
-              </td>
-              <td style={tableCellStyle}>
-                {(item.change_rate * 100).toFixed(2)}%
-              </td>
+              <td style={tableCellStyle}>{code}</td>
+              <td style={tableCellStyle}>{item.price.toLocaleString()} 원</td>
             </tr>
           );
         })}
