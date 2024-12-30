@@ -9,6 +9,11 @@ python/ai/optimizer -> 최적화 예제
 
 python/multi_syncronize -> python 비동기, 멀티 스레드, 멀티 프로세스 예제
 
+## Social Media API 예제
+
+python/social_media_api/discord -> discord 예제
+python/social_media_api/telegram -> telegram 예제
+
 <br/>
 
 # react 예제
