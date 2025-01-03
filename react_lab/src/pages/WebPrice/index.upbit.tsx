@@ -27,7 +27,7 @@ const UpWebSocketPrice = () => {
           onCodeChange={handleCodeChange}
         />
         <br />
-        <PriceTable data={data} TICKER_CODES={TICKER_CODES} />
+        <PriceTable data={data} TICKER_CODES={TICKER_CODES} c_unit={"₩"} />
       </div>
 
       <div className={style.txtContainer}>

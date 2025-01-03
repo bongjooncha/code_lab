@@ -9,6 +9,7 @@ const BiWebSocketPrice = () => {
     useBiWebSocketPrice();
   const countRef = useRef(0);
   countRef.current++;
+  console.log(data);
   return (
     <div className={style.mainContainer}>
       <div className={style.contentsContainer}>
@@ -27,7 +28,7 @@ const BiWebSocketPrice = () => {
           onCodeChange={handleCodeChange}
         />
         <br />
-        <PriceTable data={data} TICKER_CODES={TICKER_CODES} />
+        <PriceTable data={data} TICKER_CODES={TICKER_CODES} c_unit={"$"} />
       </div>
 
       <div className={style.txtContainer}>

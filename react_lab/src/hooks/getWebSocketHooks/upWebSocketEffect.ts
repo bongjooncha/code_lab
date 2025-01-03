@@ -9,6 +9,7 @@ const transFormUpbitData = (data: UpTickerData): TickerData => {
   return {
     code: data.code,
     price: data.trade_price,
+    change_rate: data.change_rate * 100,
     timestamp: data.timestamp,
   };
 };
@@ -41,6 +42,7 @@ export const useUpWebSocketPrice = () => {
         try {
           const dataText = await event.data.text();
           const parsedData: UpTickerData = JSON.parse(dataText);
+          console.log(parsedData);
           setData((prevData) => ({
             ...prevData,
             [parsedData.code]: transFormUpbitData(parsedData),

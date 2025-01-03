@@ -8,14 +8,17 @@ const TICKER_CODES = ["btc", "eth", "sol", "xrp", "usdc"];
 const transFormBinanceData = (data: BiTickerData): TickerData => {
   return {
     code: data.s,
-    price: parseFloat(data.p),
+    price: parseFloat(data.k.c),
+    change_rate:
+      ((parseFloat(data.k.c) - parseFloat(data.k.o)) / parseFloat(data.k.o)) *
+      100,
     timestamp: data.E,
   };
 };
 
 export const useBiWebSocketPrice = () => {
   const [data, setData] = useState<{ [key: string]: TickerData }>({});
-  const [selectedCode, setSelectedCode] = useState<string[]>(["usdc"]);
+  const [selectedCode, setSelectedCode] = useState<string[]>(["btc"]);
   const [countEffect, setCountEffect] = useState(0);
 
   useEffect(() => {
@@ -27,10 +30,11 @@ export const useBiWebSocketPrice = () => {
     setCountEffect((current) => current + 1);
 
     if (ws) {
+      const params = selectedCode.map((code) => `${code}usdt@kline_4h`);
       ws.onopen = () => {
         const message = JSON.stringify({
           method: "SUBSCRIBE",
-          params: ["btc@markPrice@1s"],
+          params: params,
           id: "adf",
         });
         ws.send(message);
@@ -41,10 +45,13 @@ export const useBiWebSocketPrice = () => {
         try {
           const dataText = await event.data;
           const parsedData: BiTickerData = JSON.parse(dataText);
-          setData((prevData) => ({
-            ...prevData,
-            [parsedData.s]: transFormBinanceData(parsedData),
-          }));
+
+          if (parsedData.s !== undefined) {
+            setData((prevData) => ({
+              ...prevData,
+              [parsedData.s]: transFormBinanceData(parsedData),
+            }));
+          }
         } catch (error) {
           console.error("데이터 파싱 오류:", error);
         }
