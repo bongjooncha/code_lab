@@ -36,11 +36,14 @@ async def on_ready():
 @bot.command()
 async def hello(ctx):
     await ctx.send('명령어 예제')
+    channel = bot.get_channel(try_channel_id)
+    await channel.send("할로")
 
 # 특정 채널에 메시지를 보내는 명령어
 @bot.command()
 async def send(ctx, *, message: str):
-    channel = bot.get_channel(TARGET_CHANNEL_ID)
+    channel = bot.get_channel(try_channel_id)
+    print("실행됨")
     if channel:
         await channel.send(message)
         await ctx.send('메시지를 보냈습니다.')
@@ -54,7 +57,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    print(f"메시지 감지: {message.content}")  # 메시지 내용 출력
+    print(f"{message}: {message.content}")  # 메시지 내용 출력
 
     # 명령어 처리를 위해 반드시 아래 라인을 호출해야 함
     await bot.process_commands(message)
@@ -65,3 +68,5 @@ async def on_message(message):
 # 봇 토큰으로 로그인
 token = os.getenv('TRY_BOT_TOKEN')
 bot.run(token)
+
+"!send prefix사용"
