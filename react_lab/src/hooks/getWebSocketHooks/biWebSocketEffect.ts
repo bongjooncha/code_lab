@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { connectWebSocket, disconnectWebSocket } from "api/websocket";
-import { QueryClient } from "react-query";
 import { TickerData, BiTickerData } from "types/ticker";
+import { queryClient } from "queryClients";
 
-const queryClient = new QueryClient();
 const TICKER_CODES = ["btc", "eth", "sol", "xrp", "usdc"];
 const transFormBinanceData = (data: BiTickerData): TickerData => {
   return {

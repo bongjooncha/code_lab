@@ -24,13 +24,13 @@ async def on_ready():
         print(f"Channel with ID {try_channel_id} not found")
 
     # 봇의 권한 확인
-    for guild in bot.guilds:
-        me = guild.me  # 봇의 Member 객체 가져오기
-        permissions = me.guild_permissions  # 봇의 권한 가져오기
-        print(f"\n서버: {guild.name}")
-        print("봇의 권한:")
-        for perm, value in permissions:
-            print(f"{perm}: {value}")
+    # for guild in bot.guilds:
+    #     me = guild.me  # 봇의 Member 객체 가져오기
+    #     permissions = me.guild_permissions  # 봇의 권한 가져오기
+    #     print(f"\n서버: {guild.name}")
+    #     print("봇의 권한:")
+    #     for perm, value in permissions:
+    #         print(f"{perm}: {value}")
 
 # 간단한 명령어 예제
 @bot.command()
@@ -59,8 +59,9 @@ async def on_message(message):
     # 명령어 처리를 위해 반드시 아래 라인을 호출해야 함
     await bot.process_commands(message)
 
+"!send prefix사용"
+
+
 # 봇 토큰으로 로그인
 token = os.getenv('TRY_BOT_TOKEN')
 bot.run(token)
-
-"!send prefix사용"

@@ -7,7 +7,7 @@ from functions.check_permission import CheckPermissionCog
 
 
 dotenv.load_dotenv()
-
+try_channel_id = 1323142921788330056
 Token = os.getenv('TRY_BOT_TOKEN')
 
 intents = discord.Intents.default()
