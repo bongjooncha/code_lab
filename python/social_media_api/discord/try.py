@@ -22,15 +22,18 @@ async def on_ready():
         await channel.send('안녕하세요!')
     else:
         print(f"Channel with ID {try_channel_id} not found")
+    print(bot.guilds)
+    for guild in bot.guilds:
+        print(guild)
 
     # 봇의 권한 확인
-    for guild in bot.guilds:
-        me = guild.me  # 봇의 Member 객체 가져오기
-        permissions = me.guild_permissions  # 봇의 권한 가져오기
-        print(f"\n서버: {guild.name}")
-        print("봇의 권한:")
-        for perm, value in permissions:
-            print(f"{perm}: {value}")
+    # for guild in bot.guilds:
+    #     me = guild.me  # 봇의 Member 객체 가져오기
+    #     permissions = me.guild_permissions  # 봇의 권한 가져오기
+    #     print(f"\n서버: {guild.name}")
+    #     print("봇의 권한:")
+    #     for perm, value in permissions:
+    #         print(f"{perm}: {value}")
 
 # 간단한 명령어 예제
 @bot.command()
