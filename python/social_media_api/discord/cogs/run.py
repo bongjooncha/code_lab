@@ -7,18 +7,30 @@ from message_detection import MessageDetectionCog
 
 dotenv.load_dotenv()
 
-TOKEN = os.getenv('TRY_BOT_TOKEN')
-CHANNEL_ID = 1323142921788330056
+TRY_TOKEN = os.getenv('TRY_BOT_TOKEN')
+TRY_CHANNEL_ID = 1323142921788330056
+
+CHECK_TOKEN = os.getenv('CHECK_BOT_TOKEN')
+CHECK_CHANNEL_ID = 1327535337152446557
 
 intents = discord.Intents.default()
 intents.message_content = True 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-async def setup_hook():
-    await bot.add_cog(LoginCog(bot, CHANNEL_ID, False))
+TRY = LoginCog(bot, TRY_CHANNEL_ID, False)
+CHECK = LoginCog(bot, CHECK_CHANNEL_ID, False)
+
+async def try_setup_hook():
+    await bot.add_cog(TRY)
     await bot.add_cog(MessageDetectionCog(bot))
 
-bot.setup_hook = setup_hook
+async def check_setup_hook():
+    await bot.add_cog(CHECK)
+    await bot.add_cog(MessageDetectionCog(bot))
+
+bot.setup_hook = try_setup_hook
+bot.setup_hook = check_setup_hook
 
 # 봇 실행
-bot.run(TOKEN)
+bot.run(CHECK_TOKEN)
+bot.run(TRY_TOKEN)
