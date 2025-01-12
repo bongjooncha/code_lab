@@ -6,6 +6,7 @@ const NavBar = () => {
       <Link to="/count">Count(useState, zustand)</Link>
       <Link to="/getAPI">getAPI(useEffect, query)</Link>
       <Link to="/webSocketPrice">websocket(useEffect, query)</Link>
+      <Link to="/webSocketsDepth">multi websockets</Link>
     </div>
   );
 };
