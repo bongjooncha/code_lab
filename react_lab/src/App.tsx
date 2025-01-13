@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Count from "pages/Count";
 import GetAPI from "pages/GetAPI";
 import WebPrice from "pages/WebPrice";
+import WebSocketsDepth from "pages/WebSockets";
 import Try from "pages/Try";
 
 const App: React.FC = () => {
@@ -18,6 +19,7 @@ const App: React.FC = () => {
             <Route path="/count" element={<Count />} />
             <Route path="/getAPI" element={<GetAPI />} />
             <Route path="/webSocketPrice" element={<WebPrice />} />
+            <Route path="/webSocketsDepth" element={<WebSocketsDepth />} />
             <Route path="/try" element={<Try />} />
           </Routes>
         </Router>

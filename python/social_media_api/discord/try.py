@@ -15,7 +15,7 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 
 # 봇이 준비되었을 때 호출되는 이벤트
 @bot.event
-async def on_ready():
+async def on_ready(tf=False):
     print(f'Logged in as {bot.user}')
     channel = bot.get_channel(try_channel_id)
     if channel:
@@ -23,14 +23,15 @@ async def on_ready():
     else:
         print(f"Channel with ID {try_channel_id} not found")
 
-    # 봇의 권한 확인
-    # for guild in bot.guilds:
-    #     me = guild.me  # 봇의 Member 객체 가져오기
-    #     permissions = me.guild_permissions  # 봇의 권한 가져오기
-    #     print(f"\n서버: {guild.name}")
-    #     print("봇의 권한:")
-    #     for perm, value in permissions:
-    #         print(f"{perm}: {value}")
+    if tf:
+        # 봇의 권한 확인
+        # for guild in bot.guilds:
+        #     me = guild.me  # 봇의 Member 객체 가져오기
+        #     permissions = me.guild_permissions  # 봇의 권한 가져오기
+        #     print(f"\n서버: {guild.name}")
+        #     print("봇의 권한:")
+        #     for perm, value in permissions:
+        #         print(f"{perm}: {value}")
 
 # 간단한 명령어 예제
 @bot.command()
@@ -57,7 +58,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    print(f"{message}: {message.content}")  # 메시지 내용 출력
+    print(f"{message.author}: {message.content}")  # 메시지 내용 출력
 
     # 명령어 처리를 위해 반드시 아래 라인을 호출해야 함
     await bot.process_commands(message)

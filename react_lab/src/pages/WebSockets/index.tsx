@@ -1,6 +1,6 @@
 import NavBar from "components/NavBar";
 
-const Home = () => {
+const WebSocketsDepth = () => {
   return (
     <div>
       <NavBar />
@@ -8,4 +8,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default WebSocketsDepth;
