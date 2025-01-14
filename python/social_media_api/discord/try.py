@@ -1,12 +1,16 @@
 import os
+import asyncio
 import dotenv
 import discord
 from discord.ext import commands
 
 dotenv.load_dotenv()
 
+if os.name == 'nt':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
+
 try_channel_id = 1323142921788330056
-TARGET_CHANNEL_ID = 123456789012345678  # 실제 채널 ID로 변경
 
 # 봇의 프리픽스 설정 (명령어 시작 문자)
 intents = discord.Intents.default()

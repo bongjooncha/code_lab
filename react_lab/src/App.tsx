@@ -1,6 +1,6 @@
 import React from "react";
-import { QueryClientProvider } from "react-query";
-import { queryClient } from "queryClients";
+import { QueryClientProvider } from "@tanstack/react-query";
+import queryClient from "query";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Count from "pages/Count";

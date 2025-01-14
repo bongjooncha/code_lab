@@ -1,7 +1,7 @@
 import { fetchData } from "api/upbitapi";
 import { MarketData } from "types/coinAPI";
 import { useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 export const useApiWithQuery = (refetchOnWindowFocus: boolean) => {
   const [countQuery, setCountQuery] = useState(0);
