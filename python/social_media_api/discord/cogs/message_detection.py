@@ -1,4 +1,5 @@
 from discord.ext import commands
+import asyncio
 
 class MessageDetectionCog(commands.Cog):
     def __init__(self, bot):
@@ -17,5 +18,16 @@ class MessageDetectionCog(commands.Cog):
         if message:
             await ctx.send(f'"!hello {message}"가 확인되었습니다.')
         else:
-            await ctx.send("hello! 명령어 이후 작성된 말이 없습니다.")
-            
+            await ctx.send("!hello 명령어 이후 작성된 말이 없습니다.")
+
+    @commands.command()
+    async def alert(self, ctx):
+        def check(m):
+            return m.content.lower() in ["확인", "ok"]
+        while True:
+            await ctx.send("!!!알람!!!")
+            try:
+                masg = await self.bot.wait_for('message', timeout = 1, check = check)
+                break
+            except asyncio.TimeoutError:
+                continue

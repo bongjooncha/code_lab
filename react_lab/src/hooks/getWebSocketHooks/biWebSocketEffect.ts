@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { connectWebSocket, disconnectWebSocket } from "api/websocket";
-import { QueryClient } from "react-query";
+import queryClient from "query";
 import { TickerData, BiTickerData } from "types/ticker";
 
-const queryClient = new QueryClient();
 const TICKER_CODES = ["btc", "eth", "sol", "xrp", "usdc"];
 const transFormBinanceData = (data: BiTickerData): TickerData => {
   return {
@@ -22,11 +21,11 @@ export const useBiWebSocketPrice = () => {
   const [countEffect, setCountEffect] = useState(0);
 
   useEffect(() => {
-    const ws = connectWebSocket(
-      "wss://fstream.binance.com/ws",
-      "binancewebsocket",
-      queryClient
-    );
+    const ws = connectWebSocket({
+      url: "wss://fstream.binance.com/ws",
+      queryKey: "binancewebsocket",
+      queryClient: queryClient,
+    });
     setCountEffect((current) => current + 1);
 
     if (ws) {

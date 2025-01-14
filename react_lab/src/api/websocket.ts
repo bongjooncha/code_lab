@@ -1,12 +1,12 @@
-import { QueryClient } from "react-query";
+import { WebSocketProps } from "types/websocket";
 
 let ws: WebSocket | null = null;
 
-export const connectWebSocket = (
-  url: string,
-  queryKey: string,
-  queryClient: QueryClient
-): WebSocket | null => {
+export const connectWebSocket = ({
+  url,
+  queryKey,
+  queryClient,
+}: WebSocketProps): WebSocket | null => {
   if (ws) {
     ws.close();
   }
@@ -20,7 +20,7 @@ export const connectWebSocket = (
 
   ws.onmessage = (event) => {
     const parsedData = JSON.parse(event.data);
-    queryClient.setQueryData(queryKey, parsedData);
+    queryClient.setQueryData([queryKey], parsedData);
   };
 
   ws.onerror = (error) => {

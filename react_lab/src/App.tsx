@@ -1,5 +1,6 @@
 import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
+import queryClient from "query";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Count from "pages/Count";
@@ -7,8 +8,6 @@ import GetAPI from "pages/GetAPI";
 import WebPrice from "pages/WebPrice";
 import WebSocketsDepth from "pages/WebSockets";
 import Try from "pages/Try";
-
-const queryClient = new QueryClient();
 
 const App: React.FC = () => {
   return (

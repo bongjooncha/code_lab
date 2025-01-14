@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { connectWebSocket, disconnectWebSocket } from "api/websocket";
-import { QueryClient } from "react-query";
+import queryClient from "query";
 import { TickerData, UpTickerData } from "types/ticker";
 
-const queryClient = new QueryClient();
 const TICKER_CODES = ["BTC", "ETH", "SOL", "XRP", "USDT", "USDC"];
 const transFormUpbitData = (data: UpTickerData): TickerData => {
   return {
@@ -20,11 +19,11 @@ export const useUpWebSocketPrice = () => {
   const [countEffect, setCountEffect] = useState(0);
 
   useEffect(() => {
-    const ws = connectWebSocket(
-      "wss://api.upbit.com/websocket/v1",
-      "upbitwebsocket",
-      queryClient
-    );
+    const ws = connectWebSocket({
+      url: "wss://api.upbit.com/websocket/v1",
+      queryKey: "upbitwebsocket",
+      queryClient: queryClient,
+    });
     setCountEffect((current) => current + 1);
 
     if (ws) {
