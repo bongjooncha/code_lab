@@ -13,8 +13,10 @@ if os.name == 'nt':
 try_channel_id = 1323142921788330056
 
 # 봇의 프리픽스 설정 (명령어 시작 문자)
+
+# intents는 봇의 권한을 설정하는 객체. 22년부터 .message_content = True를 추가해야지 메시지를 읽을 수 있음
 intents = discord.Intents.default()
-intents.message_content = True  # Message Content Intent 활성화
+intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 # 봇이 준비되었을 때 호출되는 이벤트
