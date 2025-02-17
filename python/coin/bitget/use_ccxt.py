@@ -19,7 +19,9 @@ exchange = ccxt.bitget({
 symbol = 'BTC/USDT:USDT'
 
 # SL/TP 주문 조회
-orders = exchange.fetch_open_orders(symbol, params={'trigger': True, 'planType': 'profit_loss'})
+# orders = exchange.get_bitget_client()
+orders = exchange.fetch_open_orders(params={'trigger': True, 'planType': 'profit_loss'})
+# orders = exchange.fetch_open_orders()
 
 # 주문 정보 출력
 pprint(orders)
