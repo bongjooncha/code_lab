@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { ButtonProps } from "types/Button";
+import { ButtonProps } from "types/button";
 
 type State = ButtonProps;
 
