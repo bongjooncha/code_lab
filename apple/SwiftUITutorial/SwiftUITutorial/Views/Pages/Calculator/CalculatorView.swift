@@ -8,7 +8,8 @@ struct CalculatorView: View {
     
     var body: some View {
         // ZStack은 선언 순서대로 뷰를 쌓임.
-        ZStack {
+        VStack {
+            Spacer()
             // viewModel.isDarkMode에 따라서 배경색 변경
             // .ignoresSafeArea()는 안전 영역(노치, 홈, 인디케이터)등을 무시하고 화면 전체를 채우도록함.
             viewModel.isDarkMode ? Color.black.ignoresSafeArea() : Color.white.ignoresSafeArea()
@@ -29,6 +30,7 @@ struct CalculatorView: View {
             }
             .padding()
         }
+        .safeAreaPadding(.all)
     }
 }
 
